@@ -1,0 +1,972 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "WareHouse API",
+    "description": "API documentation by Yurii Semyk  (c) 2022<br/><br/>WareHouse - training rest application with products, stores and relations between them.<br/>All allowed operations are listed below."
+  },
+  "host": "localhost:8080",
+  "basePath": "/WareHouseAppBE",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "product",
+      "description": "Everything about products"
+    },
+    {
+      "name": "store",
+      "description": "Access to stores"
+    },
+    {
+      "name": "Income",
+      "description": "Product income operations"
+    },
+    {
+      "name": "Sale",
+      "description": "Product sale operations"
+    },
+    {
+      "name": "Product relocation",
+      "description": "Moving products from store to store"
+    },
+    {
+      "name": "Invoice",
+      "description": "Product invoices"
+    }
+  ],
+  "paths": {
+    "/single-product": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "description": "Returns product by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Product ID to search",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned one product",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "204": {
+            "description": "The store with the specified id does not exist"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "product"
+        ],
+        "description": "Create a new product in the database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Product data to persist",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewProduct"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Product created successfully"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "product"
+        ],
+        "description": "Update an existing product",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Product data to update",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product updated successfully"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "product"
+        ],
+        "description": "Delete a product with given ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Product ID to delete",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted successfully"
+          },
+          "204": {
+            "description": "There is no product with provided ID in database"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "description": "Returns all (or filtered by name) products from the system",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Name of products to search",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of products.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          },
+          "204": {
+            "description": "No products returned"
+          }
+        }
+      }
+    },
+    "/single-store": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "description": "Returns store by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Store ID to search",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned one store",
+            "schema": {
+              "$ref": "#/definitions/Store"
+            }
+          },
+          "204": {
+            "description": "The store with the specified id does not exist"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "description": "Create a new store in the database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Store data to persist",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewStore"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Store created successfully"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "store"
+        ],
+        "description": "Update an existing store",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Store data to update",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Store"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Store updated successfully"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "store"
+        ],
+        "description": "Delete a store with given ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Store ID to delete",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Store deleted successfully"
+          },
+          "204": {
+            "description": "There is no store with provided ID in database"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      }
+    },
+    "/stores": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "description": "Returns all (or filtered by name) stores from the system",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Name of stores to search for",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of stores.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Store"
+              }
+            }
+          },
+          "204": {
+            "description": "No Stores returned"
+          }
+        }
+      }
+    },
+    "/remaining": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "description": "Returns all remaining products in all stores (or in specific store)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Which store to look for leftover products",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of products with amount.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RemainingProduct"
+              }
+            }
+          },
+          "204": {
+            "description": "No products left"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      }
+    },
+    "/single-invoice": {
+      "get": {
+        "tags": [
+          "Invoice"
+        ],
+        "description": "Returns invoice document with corresponding products by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Invoice ID to search",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned one invoice document filled with corresponding products",
+            "schema": {
+              "$ref": "#/definitions/Invoice"
+            }
+          },
+          "204": {
+            "description": "The invoice with the specified ID does not exist"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      }
+    },
+    "/invoices": {
+      "get": {
+        "tags": [
+          "Invoice"
+        ],
+        "description": "Returns all invoices filled with corresponding products",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of invoice documents.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Invoice"
+              }
+            }
+          },
+          "204": {
+            "description": "No Incomes returned"
+          }
+        }
+      }
+    },
+    "/single-income": {
+      "get": {
+        "tags": [
+          "Income"
+        ],
+        "description": "Returns income document with corresponding products by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Income ID to search",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned one income document filled with corresponding products",
+            "schema": {
+              "$ref": "#/definitions/IncomeDocument"
+            }
+          },
+          "204": {
+            "description": "The income with the specified ID does not exist"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Income"
+        ],
+        "description": "Creates a new store income.<br/> This endpoint automatically creates a new matching invoice filled with products and adds the quantity of products to the corresponding store. If there is no such product in the store, it will be inserted; if the product is in the store - its amount will be updated",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Income document data to process",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewIncomeDocument"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Income created successfully"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      }
+    },
+    "/incomes": {
+      "get": {
+        "tags": [
+          "Income"
+        ],
+        "description": "Returns all income documents",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of income documents.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IncomeDocument"
+              }
+            }
+          },
+          "204": {
+            "description": "No Income documents returned"
+          }
+        }
+      }
+    },
+    "/single-sale": {
+      "get": {
+        "tags": [
+          "Sale"
+        ],
+        "description": "Returns sale document with corresponding products by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Sale ID to search",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned one sale document filled with corresponding products",
+            "schema": {
+              "$ref": "#/definitions/SaleDocument"
+            }
+          },
+          "204": {
+            "description": "The sale with the specified ID does not exist"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Sale"
+        ],
+        "description": "Creates a new store sale.<br/> This endpoint automatically creates a new matching invoice filled with products and substract the quantity of products from the corresponding store. If there is no such product in the store (or it's amount is too low) - you will get a bad request error; if the product present in the store and amount is enough - its amount will be updated",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Sale document data to process",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewSaleDocument"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Sale created successfully"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      }
+    },
+    "/sales": {
+      "get": {
+        "tags": [
+          "Sale"
+        ],
+        "description": "Returns all sale documents",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of sale documents.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SaleDocument"
+              }
+            }
+          },
+          "204": {
+            "description": "No Sale documents returned"
+          }
+        }
+      }
+    },
+    "/single-movement": {
+      "get": {
+        "tags": [
+          "Product relocation"
+        ],
+        "description": "Returns movement document with corresponding products by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Movement ID to search",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned one movement document filled with corresponding products",
+            "schema": {
+              "$ref": "#/definitions/MovementDocument"
+            }
+          },
+          "204": {
+            "description": "The movement with the specified ID does not exist"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Product relocation"
+        ],
+        "description": "Creates a new store movement.<br/> This endpoint automatically creates a new matching invoice filled with products; then it take products from one store and put them into another. If there is no such product in the from_store (or it's amount is too low) - you will get a bad request error",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "movement document data to process",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewMovementDocument"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Movement created successfully"
+          },
+          "400": {
+            "description": "Bad request: Input data is invalid"
+          }
+        }
+      }
+    },
+    "/movements": {
+      "get": {
+        "tags": [
+          "Product relocation"
+        ],
+        "description": "Returns all movement documents filled with corresponding products",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of movement documents.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MovementDocument"
+              }
+            }
+          },
+          "204": {
+            "description": "No Movements returned"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "RemainingProduct": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer"
+        },
+        "product": {
+          "$ref": "#/definitions/Product"
+        }
+      }
+    },
+    "Invoice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "transactionTypeId": {
+          "type": "integer"
+        },
+        "transactionTypeTitle": {
+          "type": "string"
+        },
+        "countableProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CountableProduct"
+          }
+        }
+      }
+    },
+    "SaleDocument": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "storeId": {
+          "type": "integer"
+        },
+        "storeTitle": {
+          "type": "string"
+        },
+        "invoiceId": {
+          "type": "integer"
+        },
+        "countableProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CountableProduct"
+          }
+        }
+      }
+    },
+    "NewIncomeDocument": {
+      "type": "object",
+      "properties": {
+        "storeId": {
+          "type": "integer"
+        },
+        "countableProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NewTransactionProduct"
+          }
+        }
+      }
+    },
+    "NewSaleDocument": {
+      "type": "object",
+      "properties": {
+        "storeId": {
+          "type": "integer"
+        },
+        "countableProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NewTransactionProduct"
+          }
+        }
+      }
+    },
+    "NewMovementDocument": {
+      "type": "object",
+      "properties": {
+        "fromStoreId": {
+          "type": "integer"
+        },
+        "toStoreId": {
+          "type": "integer"
+        },
+        "countableProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NewMovementProduct"
+          }
+        }
+      }
+    },
+    "IncomeDocument": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "storeId": {
+          "type": "integer"
+        },
+        "storeTitle": {
+          "type": "string"
+        },
+        "invoiceId": {
+          "type": "integer"
+        },
+        "countableProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CountableProduct"
+          }
+        }
+      }
+    },
+    "MovementDocument": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "fromStoreId": {
+          "type": "integer"
+        },
+        "fromStoreTitle": {
+          "type": "string"
+        },
+        "toStoreId": {
+          "type": "integer"
+        },
+        "toStoreTitle": {
+          "type": "string"
+        },
+        "invoiceId": {
+          "type": "integer"
+        },
+        "countableProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CountableProduct"
+          }
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "code": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "lastPurchasePrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "lastSalePrice": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "NewProduct": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "lastPurchasePrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "lastSalePrice": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "CountableProduct": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "product": {
+          "$ref": "#/definitions/Product"
+        }
+      }
+    },
+    "NewTransactionProduct": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "product": {
+          "$ref": "#/definitions/IdOnlyProduct"
+        }
+      }
+    },
+    "NewMovementProduct": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer"
+        },
+        "product": {
+          "$ref": "#/definitions/IdOnlyProduct"
+        }
+      }
+    },
+    "IdOnlyProduct": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        }
+      }
+    },
+    "Store": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "NewStore": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
