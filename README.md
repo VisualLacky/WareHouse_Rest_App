@@ -4,7 +4,7 @@
 WareHouse training rest application by <b>Yurii Semyk.</b><br/>
 This application was created as part of a test task implementation. <br/><br/>
 
-<b>In a nutshell:</b><br/> Rest application with <b>persisting layer</b> (database). Interaction with the outside world is implemented through <b>JSON</b> files.
+<b>In a nutshell:</b><br/> Rest application with <b>persisting layer</b> (database) and running on <b>Java 8</b>. Interaction with the outside world is implemented through <b>JSON</b> files.
 The application controls products in various stores. <b>CRUD</b> operations are available for entities.
 <br/><br/>App can save and give information (documents) 
 about events such as income, selling or moving products from store to store. In addition, there is an invoice with all the necessary additional information for each document.<br/>
@@ -14,9 +14,9 @@ The code was written in one week - some test still missing due to lack of time f
 Note: One of the requirements was not to use spring framework, so application is based on plain <b>servlets</b> :)
 
 <br/>DEPLOYMENT INSTRUCTIONS:<br/>
-- Run <b>SQL_BD_INIT_SCRIPT</b> in database for data initiation<br/>
+- Run <b>SQL_BD_INIT_SCRIPT</b> in database to initialize data<br/>
 - Connect database in <b>META-INF/context.xml</b><br/>
-- Run application on a tomcat server (<b>/WareHouseAppBE</b> is a standart context path for this app)<br/>
+- Run application on a tomcat server ( <b>/WareHouseAppBE</b> is a standart context path for this app)<br/>
 - You are good to go!<br/>
 
 <br/><br/>You can test api via local link:<br/> 
