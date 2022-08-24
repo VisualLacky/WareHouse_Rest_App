@@ -24,7 +24,7 @@ Note: One of the requirements was not to use spring framework, so application is
 
 
 ## API documentation
-You can view and test api via local link:<br/> 
+You can view and test api via local link on a running server:<br/> 
 <b><</b> http://localhost:8080/WareHouseAppBE/swagger/index.html <b>></b><br/><br/>
 
 
