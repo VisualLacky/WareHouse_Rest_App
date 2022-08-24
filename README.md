@@ -16,7 +16,8 @@ Note: One of the requirements was not to use spring framework :)
 <br/>DEPLOYMENT INSTRUCTIONS:<br/>
 - Run SQL_BD_INIT_SCRIPT in database for data initiation<br/>
 - Connect database in META-INF/context.xml<br/>
-- Run application and you are good to go!<br/>
+- Run application on a tomcat server (/WareHouseAppBE is a standart context path for app)<br/>
+- You are good to go!<br/>
 
 <br/><br/>You can test api via local link:<br/> 
 < http://localhost:8080/WareHouseAppBE/swagger/index.html >
