@@ -19,7 +19,7 @@ Note: One of the requirements was not to use spring framework :)
 - Run application and you are good to go!<br/>
 
 <br/><br/>You can test api via local link:<br/> 
-http://localhost:8080/WareHouseAppBE/swagger/index.html
+< http://localhost:8080/WareHouseAppBE/swagger/index.html >
 
 <br/><br/>
 Technologies:  <br/>
