@@ -1,7 +1,7 @@
 # WareHouse_Rest_App
 ## Description
 
-WereHouse training rest application by <b>Yurii Semyk.</b><br/>
+WareHouse training rest application by <b>Yurii Semyk.</b><br/>
 This application was created as part of a test task implementation. <br/><br/>
 
 <b>In a nutshell:</b><br/> Rest application with <b>persisting layer</b> (database). Interaction with the outside world is implemented through <b>JSON</b> files.
