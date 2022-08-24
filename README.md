@@ -1,0 +1,29 @@
+# WareHouse_Rest_App
+## Description
+
+WereHouse training rest application by <b>Yurii Semyk.</b><br/>
+This application was created as part of a test task implementation. <br/><br/>
+
+In a nutshell: Rest application with persisting layer (database). Interaction with the outside world is implemented through JSON files.
+The application controls products in various stores. CRUD operations are available for entities. User can save and get information (documents)<br/>
+about events such as income, selling or moving products from store to store. In addition, there is an invoice with all the necessary additional<br/>
+information for each document.<br/>
+When event is performed through API, all additional actions (such as persisting documents info in the databese or products/store updates) processed automatically.<br/>
+API is documented via Swagger 2.0 and availiable for testing in local environment.<br/><br/>
+The code was written in 7 days - some test still missing due to lack of time for this testing task.
+
+<br/>DEPLOYMENT INSTRUCTIONS:<br/>
+- Run SQL_BD_INIT_SCRIPT in database for data initiation<br/>
+- Connect database in META-INF/context.xml<br/>
+- Run application and you are good to go!<br/>
+
+<br/><br/>You can test api via local link:<br/> 
+http://localhost:8080/WareHouseAppBE/swagger/index.html
+
+<br/><br/>
+Technologies:  <br/>
+<b>Java core</b><br/>
+<b>Java EE</b> (servlets)<br/>
+<b>JUnit, Mockito</b> (testing)<br/>
+<b>PostgreSQL</b> (persisting layer)<br/>
+<b>Swagger</b> (API specification)
