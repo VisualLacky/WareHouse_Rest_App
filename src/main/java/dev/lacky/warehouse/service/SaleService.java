@@ -12,20 +12,18 @@ import dev.lacky.warehouse.model.Product;
 import dev.lacky.warehouse.model.Sale;
 import dev.lacky.warehouse.pojo.CountableProduct;
 import dev.lacky.warehouse.pojo.SaleDocument;
-import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SaleService {
 
   public static final int SALE_TRANSACTION_TYPE = 1;
 
-  private SaleDao saleDao;
-  private StoreDao storeDao;
-  private ProductDao productDao;
-  private InvoiceDao invoiceDao;
+  private final SaleDao saleDao;
+  private final StoreDao storeDao;
+  private final ProductDao productDao;
+  private final InvoiceDao invoiceDao;
 
   public SaleService() {
     saleDao = new SaleDao();

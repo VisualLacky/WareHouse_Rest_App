@@ -21,10 +21,10 @@ public class MovementService {
 
   public static final int MOVEMENT_TRANSACTION_TYPE = 3;
 
-  private MovementDao movementDao;
-  private StoreDao storeDao;
-  private ProductDao productDao;
-  private InvoiceDao invoiceDao;
+  private final MovementDao movementDao;
+  private final StoreDao storeDao;
+  private final ProductDao productDao;
+  private final InvoiceDao invoiceDao;
 
   public MovementService() {
     movementDao = new MovementDao();

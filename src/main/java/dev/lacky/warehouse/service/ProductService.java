@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ProductService {
 
-  private ProductDao productDao;
+  private final ProductDao productDao;
 
   public ProductService() {
     productDao = new ProductDao();

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class StoreService {
 
-  private StoreDao storeDao;
+  private final StoreDao storeDao;
 
   public StoreService() {
     storeDao = new StoreDao();

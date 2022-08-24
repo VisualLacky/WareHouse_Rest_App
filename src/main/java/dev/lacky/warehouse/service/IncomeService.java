@@ -15,16 +15,15 @@ import dev.lacky.warehouse.pojo.IncomeDocument;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class IncomeService {
 
   public static final int INCOME_TRANSACTION_TYPE = 2;
 
-  private IncomeDao incomeDao;
-  private StoreDao storeDao;
-  private ProductDao productDao;
-  private InvoiceDao invoiceDao;
+  private final IncomeDao incomeDao;
+  private final StoreDao storeDao;
+  private final ProductDao productDao;
+  private final InvoiceDao invoiceDao;
 
   public IncomeService() {
     incomeDao = new IncomeDao();

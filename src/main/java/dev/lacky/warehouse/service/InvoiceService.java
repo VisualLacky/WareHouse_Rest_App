@@ -8,7 +8,7 @@ import java.util.List;
 
 public class InvoiceService {
 
-  private InvoiceDao invoiceDao;
+  private final InvoiceDao invoiceDao;
 
   public InvoiceService() {
     invoiceDao = new InvoiceDao();
