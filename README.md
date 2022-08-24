@@ -11,16 +11,16 @@ about events such as income, selling or moving products from store to store. In 
 When event is performed through API, all additional actions (such as persisting documents info in the databese or products/store updates) processed automatically.<br/>
 <br/>API is fully documented via <b>Swagger 2.0</b> and availiable for testing in local environment.<br/><br/>
 The code was written in one week - some test still missing due to lack of time for this testing task.<br/>
-Note: One of the requirements was not to use spring framework, so application is based on plain servlets :)
+Note: One of the requirements was not to use spring framework, so application is based on plain <b>servlets</b> :)
 
 <br/>DEPLOYMENT INSTRUCTIONS:<br/>
-- Run SQL_BD_INIT_SCRIPT in database for data initiation<br/>
-- Connect database in META-INF/context.xml<br/>
-- Run application on a tomcat server (/WareHouseAppBE is a standart context path for this app)<br/>
+- Run <b>SQL_BD_INIT_SCRIPT</b> in database for data initiation<br/>
+- Connect database in <b>META-INF/context.xml</b><br/>
+- Run application on a tomcat server (<b>/WareHouseAppBE</b> is a standart context path for this app)<br/>
 - You are good to go!<br/>
 
 <br/><br/>You can test api via local link:<br/> 
-< http://localhost:8080/WareHouseAppBE/swagger/index.html >
+<b><</b> http://localhost:8080/WareHouseAppBE/swagger/index.html <b>></b>
 
 <br/><br/>
 Technologies:  <br/>
