@@ -11,7 +11,7 @@ about events such as income, selling or moving products from store to store. In 
 When event is performed through API, all additional actions (such as persisting documents info in the databese or products/store updates) processed automatically.<br/>
 <br/>API is fully documented via Swagger 2.0 and availiable for testing in local environment.<br/><br/>
 The code was written in 7 days - some test still missing due to lack of time for this testing task.<br/>
-Note: One of the requirements was not to use spring framework :)
+Note: One of the requirements was not to use spring framework, so application is based on plain servlets :)
 
 <br/>DEPLOYMENT INSTRUCTIONS:<br/>
 - Run SQL_BD_INIT_SCRIPT in database for data initiation<br/>
