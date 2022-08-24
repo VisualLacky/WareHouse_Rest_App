@@ -6,10 +6,10 @@ This application was created as part of a test task implementation. <br/><br/>
 
 <b>In a nutshell:</b><br/> Rest application with <b>persisting layer</b> (database). Interaction with the outside world is implemented through <b>JSON</b> files.
 The application controls products in various stores. <b>CRUD</b> operations are available for entities.
-<br/>App can save and give information (documents) 
+<br/><br/>App can save and give information (documents) 
 about events such as income, selling or moving products from store to store. In addition, there is an invoice with all the necessary additional information for each document.<br/>
 When event is performed through API, all additional actions (such as persisting documents info in the databese or products/store updates) processed automatically.<br/>
-API is documented via Swagger 2.0 and availiable for testing in local environment.<br/><br/>
+<br/><br/>API is documented via Swagger 2.0 and availiable for testing in local environment.<br/><br/>
 The code was written in 7 days - some test still missing due to lack of time for this testing task.<br/>
 Note: One of the requirements was not to use spring framework :)
 
