@@ -10,7 +10,7 @@ Rest application with <b>persisting layer</b> (database) and running on <b>Java 
 The application controls products in various stores. <b>CRUD</b> operations are available for entities.
 <br/><br/>App can save and give information (documents) 
 about events such as income, selling or moving products from store to store. In addition, there is an invoice with all the necessary additional information for each document.<br/>
-When event is performed through API, all additional actions (such as persisting documents info in the databese or products/store updates) processed automatically.<br/>
+When event is performed through API, all additional actions (such as persisting documents info in the database or products/store updates) processed automatically.<br/>
 <br/>API is fully documented via <b>Swagger 2.0</b> and availiable for testing in local environment.<br/><br/>
 The code was written in one week - some test still missing due to lack of time for this testing task.<br/>
 Note: One of the requirements was not to use spring framework, so application is based on plain <b>servlets</b> :)<br/><br/>
